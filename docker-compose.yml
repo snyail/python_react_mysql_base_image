@@ -10,6 +10,8 @@ services:
       - ./backend/app:/app
     env_file:
       - ./backend/app/.env
+    depends_on:
+      - mysql
 
   frontend:
     build:
