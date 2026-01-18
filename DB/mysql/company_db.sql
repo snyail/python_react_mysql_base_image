@@ -1,0 +1,38 @@
+CREATE TABLE companies (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL COMMENT '会社名',
+  email VARCHAR(255) NOT NULL UNIQUE COMMENT 'メールアドレス',
+  ip_address VARCHAR(45) NULL COMMENT '登録時IPアドレス',
+  ip_address_2 VARCHAR(45) NULL COMMENT '追加IPアドレス',
+  ip_address_3 VARCHAR(45) NULL COMMENT '追加IPアドレス',
+  password_hash VARCHAR(255) NOT NULL COMMENT 'パスワード（ハッシュ）',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE works (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  company_id BIGINT NOT NULL COMMENT 'companies.id',
+  location VARCHAR(255) NOT NULL COMMENT '勤務地',
+  contents TEXT NOT NULL COMMENT '仕事内容',
+  status TINYINT NOT NULL DEFAULT 1 COMMENT '0:下書き 1:公開 2:停止',
+  logo_path VARCHAR(255) NULL COMMENT 'ロゴ画像パス（png）',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_works_company
+    FOREIGN KEY (company_id)
+    REFERENCES companies(id)
+    ON DELETE CASCADE
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci;
+
+CREATE INDEX idx_works_company_id ON works(company_id);
+CREATE INDEX idx_companies_ip_address ON companies(ip_address);
+CREATE INDEX idx_companies_ip_address_2 ON companies(ip_address_2);
+CREATE INDEX idx_companies_ip_address_3 ON companies(ip_address_3);
+CREATE INDEX idx_works_status ON works(status);

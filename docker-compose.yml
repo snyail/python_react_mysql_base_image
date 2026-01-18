@@ -10,6 +10,8 @@ services:
       - ./backend/app:/app
     env_file:
       - ./backend/app/.env
+    depends_on:
+      - mysql
 
   frontend:
     build:
@@ -25,3 +27,27 @@ services:
       - ./frontend/.env
     depends_on:
       - backend
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: company_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1a24c3de
+      TZ: Asia/Tokyo
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./DB/mysql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
