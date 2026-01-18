@@ -19,8 +19,7 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./frontend/src:/app
-      - ./frontend/public:/public
+      - ./frontend:/app
       - /app/node_modules
     env_file:
       - ./frontend/.env
