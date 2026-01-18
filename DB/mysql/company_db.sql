@@ -32,3 +32,7 @@ CREATE TABLE works (
   COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_works_company_id ON works(company_id);
+CREATE INDEX idx_companies_ip_address ON companies(ip_address);
+CREATE INDEX idx_companies_ip_address_2 ON companies(ip_address_2);
+CREATE INDEX idx_companies_ip_address_3 ON companies(ip_address_3);
+CREATE INDEX idx_works_status ON works(status);
