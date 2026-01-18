@@ -11,18 +11,17 @@ services:
     env_file:
       - ./backend/app/.env
 
-  # not now add
-  # after complete python dev, add this
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   container_name: react-frontend
-  #   ports:
-  #     - "5173:5173"
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   env_file:
-  #     - ./frontend/.env
-  #   depends_on:
-  #     - backend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile/Dockerfile
+    container_name: react-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - backend
