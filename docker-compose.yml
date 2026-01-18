@@ -2,12 +2,12 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Docker/dockerfile
+      dockerfile: Docker/Dockerfile
     container_name: fastapi-backend
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/app:/app
+      - ./backend/app:.
     env_file:
       - ./backend/app/.env
 
