@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Docker/Dockerfile
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/app
+    env_file:
+      - ./backend/app/.env
+
+  # not now add
+  # after complete python dev, add this
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   container_name: react-frontend
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   env_file:
+  #     - ./frontend/.env
+  #   depends_on:
+  #     - backend
