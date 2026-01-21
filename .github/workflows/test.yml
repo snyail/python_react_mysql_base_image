@@ -18,8 +18,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r ./backend/app/requirements.txt
+          pip install -r ./backend/src/requirements.txt
 
       - name: Run tests
-        working-directory: backend/app
+        working-directory: backend/src
         run: pytest

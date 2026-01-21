@@ -7,9 +7,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/app:/app
+      - ./backend/src:/src
     env_file:
-      - ./backend/app/.env
+      - ./backend/src/.env
     depends_on:
       - mysql
 
