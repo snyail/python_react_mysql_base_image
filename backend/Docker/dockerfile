@@ -5,6 +5,8 @@ WORKDIR /app
 COPY app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY ./app/pyproject.toml .
+
 # dockerコンテキストで実行自体は./backend配下なのでこれでいいはず
 COPY app ./app
 
