@@ -2,9 +2,9 @@ name: Run Python 3.11 Tests on Push or PR
 
 on:
   push:
-    branches: [ main, 'feature/*' ]
+    branches: [ main, 'feature/*', 'develop' ]
   pull_request:
-    branches: [ main, 'feature/*' ]
+    branches: [ main, 'feature/*', 'develop' ]
 
 jobs:
   test:
