@@ -10,4 +10,6 @@ COPY ./src/pyproject.toml .
 # dockerコンテキストで実行自体は./backend配下なのでこれでいいはず
 COPY src/app ./app
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+WORKDIR  /src/app
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
