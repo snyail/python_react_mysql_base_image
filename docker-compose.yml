@@ -1,5 +1,7 @@
 services:
   backend:
+    environment:
+      DATABASE_URL: mysql+pymysql://root:1a24c3de@mysql:3306/company_db
     build:
       context: ./backend
       dockerfile: Docker/Dockerfile
